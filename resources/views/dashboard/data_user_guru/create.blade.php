@@ -7,18 +7,30 @@
     <div class="col-lg-8">
         <form action="/dashboard/data-user-guru" method="post" class="mb-5">
             @csrf
-            <div class="mb-3">
-                <label for="level" class="form-label">Status</label>
+            <div class="mb-3" hidden>
                 <select class="form-select" name="level" id="level">
                     <option selected value="2">Guru</option>
-                    <option value="2">Guru</option>
                 </select>
             </div>
+            <div class="mb-3" hidden>
+                <input type="text" class="form-control" id="status_walikelas" name="status_walikelas" required autofocus
+                    value="non-active">
+            </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control @error('username') is-invalid @enderror" id="name"
-                    name="name" required autofocus value="{{ old('name') }}">
-                @error('name')
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama"
+                    required autofocus value="{{ old('nama') }}">
+                @error('nama')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="nomor_induk" class="form-label">Nomor Induk Pegawai</label>
+                <input type="text" class="form-control @error('nomor_induk') is-invalid @enderror" id="nomor_induk"
+                    name="nomor_induk" required autofocus value="{{ old('nomor_induk') }}">
+                @error('nomor_induk')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

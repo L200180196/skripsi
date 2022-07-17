@@ -278,7 +278,7 @@
                 <label for="deskripsi" class="form-label">Deskripsi</label>
                 <div class="form-floating">
                     <textarea id="deskripsi" name="deskripsi" class="form-control @error('deskripsi') is-invalid @enderror"
-                        style="height: 100px" value="{{ old('deskripsi') }}"></textarea>
+                        style="height: 100px">{{ old('deskripsi') }}</textarea>
                 </div>
                 @error('deskripsi')
                     <div class="invalid-feedback">

@@ -44,16 +44,19 @@ class DataUserSiswaController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
             'username' => 'required|max:255|unique:users',
             'level' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:255',
         ]);
 
+        
         // $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
+        $datauser = User::where('username', $request->username)->first();
+        DataDiri::where('nama_lengkap', $request->nama)->update(['user_id' => $datauser->id]);
         return redirect('/dashboard/data-user-siswa')->with('success', 'Pengguna Berhasil Ditambahkan');
     }
 
@@ -91,7 +94,7 @@ class DataUserSiswaController extends Controller
     public function update(Request $request, User $data_user_siswa)
     {
         $rules = [
-            'name' => 'required',
+            'nama' => 'required',
             'level' => 'required',
             'password' => 'required|min:5|max:255',
         ];
@@ -112,9 +115,8 @@ class DataUserSiswaController extends Controller
      */
     public function destroy(User $data_user_siswa)
     {
+        DataDiri::where('user_id', $data_user_siswa->id)->update(['user_id' => null]);
         User::destroy($data_user_siswa->id);
-        SpiritualNilai::where('user_id', $data_user_siswa->id)->delete();
-        DataDiri::where('user_id', $data_user_siswa->id)->delete();
         return redirect('/dashboard/data-user-siswa')->with('success', 'User Telah Dihapus');
     }
 }

@@ -14,11 +14,21 @@ class NilaiController extends Controller
 {
     public function index()
     {
-        $data_mapel_guru = DataGuru::where('nip', '=', auth()->user()->nomor_induk)->first();
-        $arr_kalimat = explode (", ",$data_mapel_guru->mata_pelajaran_diampu);
-        return view('dashboard.data_nilai.index',[
-            'data_mapel' => $arr_kalimat,
-        ]);
+        if (auth()->user()->level == 2) {
+            $data_mapel_guru = DataGuru::where('nip', '=', auth()->user()->nomor_induk)->first();
+            $arr_kalimat = explode (", ",$data_mapel_guru->mata_pelajaran_diampu);
+            return view('dashboard.data_nilai.index',[
+                'data_mapel' => $arr_kalimat,
+            ]);
+        }elseif (auth()->user()->level == 3) {
+            return view('dashboard.data_nilai.index',[
+                'nilai_pengetahuan' => PengetahuanNilai::where('nis', auth()->user()->nomor_induk)->get(),
+                'nilai_keterampilan' => KeterampilanNilai::where('nis', auth()->user()->nomor_induk)->get(),
+                'nilai_sosial' => SosialNilai::where('nis', auth()->user()->nomor_induk)->get(),
+                'nilai_spiritual' => SpiritualNilai::where('nis', auth()->user()->nomor_induk)->get(),
+            ]);
+        }
+        
     }
 
     public function select(Request $request)

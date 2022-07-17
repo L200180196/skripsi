@@ -1,9 +1,10 @@
 @extends('dashboard.layouts.main')
 @section('container')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Data Nilai Keterampilan Mata Pelajaran {{ $mapel }}</h1>
-    </div>
+        <h1 class="h2">Data Nilai Keterampilan </h1>
 
+    </div>
+    <h1 class="h2 mb-3">Mata Pelajaran {{ $mapel }}</h1>
     @if (session()->has('success'))
         <div class="alert alert-success col-lg-8" role="alert">
             {{ session('success') }}
@@ -69,7 +70,12 @@
                             {{ $pembagi1++ }}
                             {{ $a1++ }}
                         @endforeach
-                        {{ $nilai_harian1 = $nilai_harian1 / $pembagi1 }}
+                        @if ($nilai_harian1 == null)
+                            {{ $nilai_harian1 = 0 }}
+                        @else
+                            {{ $nilai_harian1 = $nilai_harian1 / $pembagi1 }}
+                        @endif
+
                     </p>
                     <p hidden>
                         @foreach ($collection2 as $i)
@@ -81,7 +87,11 @@
                             {{ $pembagi2++ }}
                             {{ $a2++ }}
                         @endforeach
-                        {{ $nilai_harian2 = $nilai_harian2 / $pembagi2 }}
+                        @if ($nilai_harian2 == null)
+                            {{ $nilai_harian2 = 0 }}
+                        @else
+                            {{ $nilai_harian2 = $nilai_harian2 / $pembagi2 }}
+                        @endif
                     </p>
                     <p hidden>
                         @foreach ($collection3 as $i)
@@ -93,7 +103,11 @@
                             {{ $pembagi3++ }}
                             {{ $a3++ }}
                         @endforeach
-                        {{ $nilai_harian3 = $nilai_harian3 / $pembagi3 }}
+                        @if ($nilai_harian3 == null)
+                            {{ $nilai_harian3 = 0 }}
+                        @else
+                            {{ $nilai_harian3 = $nilai_harian3 / $pembagi3 }}
+                        @endif
                     </p>
                     <tr>
                         <td>{{ $loop->iteration }}</td>
@@ -127,11 +141,13 @@
                         <td>predikat</td>
                         <td>{{ $item->deskripsi }}</td>
                         <td>
-                            <a href="/dashboard/nilai/keterampilan/{{ $item->id }}/edit" class="badge bg-warning">
+                            <a href="/dashboard/nilai/keterampilan/{{ strtolower(str_replace(' ', '-', $mapel)) }}/{{ $item->id }}/edit"
+                                class="badge bg-warning">
                                 <span data-feather="edit"></span>
                             </a>
-                            <form action="/dashboard/nilai/keterampilan/{{ $item->id }}" method="post"
-                                class="d-inline">
+                            <form
+                                action="/dashboard/nilai/keterampilan/{{ strtolower(str_replace(' ', '-', $mapel)) }}/{{ $item->id }}"
+                                method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
                                 <button class="badge bg-danger border-0" onclick="return confirm('Apakah Anda Yakin ?')">

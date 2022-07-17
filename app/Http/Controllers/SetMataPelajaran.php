@@ -15,7 +15,12 @@ class SetMataPelajaran extends Controller
         $status = [
             'mata_pelajaran_diampu' => '',
         ];
+        $del = [
+            'nip_guru' => null,
+            'status' => 'non-aktif',
+        ];
         DataGuru::where('nip', $id->nomor_induk)->update($status);
+        MapelDiampu::where('nip_guru', $id->nomor_induk)->update($del);
         return redirect('/dashboard/data-user-guru')->with('success', 'Data Mata Pelajaran Berhasil Diperbarui');
     }
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\DataDiri;
 use App\Models\DataWaliKelas;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\File;
 
 class DataDiriSiswaController extends Controller
 {
@@ -61,9 +63,15 @@ class DataDiriSiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(DataDiri $data_diri_siswa)
     {
-        //
+        // $pdf = PDF::loadview('dashboard.data_user_siswa.show',[
+        //     'data_siswa' => DataDiri::where('id', $data_diri_siswa->id)->first(),
+        // ]);
+        // return $pdf->download('dashboard.data_user_siswa.show.pdf');
+        return view('dashboard.data_user_siswa.show',[
+            'data_siswa' => DataDiri::where('id', $data_diri_siswa->id)->first(),
+        ]);
     }
 
     /**

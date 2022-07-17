@@ -11,7 +11,8 @@
     @endif
 
     <div class="table-responsive ">
-        <a href="/dashboard/data-user-siswa/create" class="btn btn-primary mb-3">Buat Pengguna Baru</a>
+        <a href="/dashboard/data-user-siswa/create" class="btn btn-primary mb-3">Tambah <span
+                data-feather="user-plus"></span></a>
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -26,7 +27,7 @@
                 @foreach ($data_user as $item)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->nama }}</td>
                         <td>{{ $item->username }}</td>
                         <td>{{ $item->email }}</td>
                         <td>

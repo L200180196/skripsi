@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
         MataPelajaran::create(['nama' => 'Bahasa Jawa',]);
 
         User::create([
-            'name' => 'admin',
+            'nama' => 'admin',
             'level' => '1',
             'username' => 'admin',
             'email' => 'admin@gmail.com',
@@ -42,47 +42,47 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Indah Kusuma',
+            'nama' => 'Indah Kusuma',
             'nomor_induk' => 1,
             'level' => '2',
             'username' => 'guru1',
             'email' => 'guru1@gmail.com',
-            'status_walikelas' => 'iya',
+            'status_walikelas' => 'active',
             'password' => Hash::make('guru1'),
         ]);
 
         User::create([
-            'name' => 'Hasan Basri',
+            'nama' => 'Hasan Basri',
             'nomor_induk' => 2,
             'level' => '2',
             'username' => 'guru2',
             'email' => 'guru2@gmail.com',
-            'status_walikelas' => 'iya',
+            'status_walikelas' => 'active',
             'password' => Hash::make('guru2'),
         ]);
 
         User::create([
-            'name' => 'Ratnasari',
+            'nama' => 'Ratnasari',
             'nomor_induk' => 3,
             'level' => '2',
             'username' => 'guru3',
             'email' => 'guru3@gmail.com',
-            'status_walikelas' => 'tidak',
+            'status_walikelas' => 'non-active',
             'password' => Hash::make('guru3'),
         ]);
 
         User::create([
-            'name' => 'Aria Kusuma',
+            'nama' => 'Aria Kusuma',
             'nomor_induk' => 4,
             'level' => '2',
             'username' => 'guru4',
             'email' => 'guru4@gmail.com',
-            'status_walikelas' => 'tidak',
+            'status_walikelas' => 'non-active',
             'password' => Hash::make('guru4'),
         ]);
         
         User::create([
-            'name' => 'Amartya Maulana',
+            'nama' => 'Amartya Maulana',
             'nomor_induk' => 4567,
             'level' => '3',
             'username' => 'siswa1',
@@ -91,7 +91,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'M. Ahyatul Fajri',
+            'nama' => 'M. Ahyatul Fajri',
             'nomor_induk' => 5436,
             'level' => '3',
             'username' => 'siswa2',
@@ -100,7 +100,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'M. Irfan',
+            'nama' => 'M. Irfan',
             'nomor_induk' => 4321,
             'level' => '3',
             'username' => 'siswa3',
@@ -108,7 +108,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('siswa'),
         ]);
         User::create([
-            'name' => 'Arif Fudholi',
+            'nama' => 'Arif Fudholi',
             'nomor_induk' => 5642,
             'level' => '3',
             'username' => 'siswa4',

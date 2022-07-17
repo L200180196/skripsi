@@ -32,8 +32,8 @@
                         <td>{{ $item->alamat }}</td>
                         <td>{{ $item->no_telp }}</td>
                         <td>
-                            <a href="/dashboard/data-diri-siswa" class="badge bg-info">
-                                <span data-feather="eye"></span>
+                            <a href="/dashboard/data-diri-siswa/{{ $item->id }}" class="badge bg-info">
+                                <span data-feather="printer"></span>
                             </a>
                             <a href="/dashboard/data-diri-siswa/{{ $item->id }}/edit" class="badge bg-warning">
                                 <span data-feather="edit"></span>

@@ -10,7 +10,7 @@
             @csrf
             <div class="mb-3" hidden>
                 <select class="form-select" name="status_walikelas" id="status_walikelas">
-                    <option selected value="iya"></option>
+                    <option selected value="active"></option>
                 </select>
             </div>
             <div class="mb-3">

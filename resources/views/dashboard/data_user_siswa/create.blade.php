@@ -5,23 +5,18 @@
     </div>
 
     <div class="col-lg-8">
-        <form action="/dashboard/data-user" method="post" class="mb-5">
+        <form action="/dashboard/data-user-siswa" method="post" class="mb-5">
             @csrf
             <div class="mb-3">
                 <input type="text" class="form-control" id="level" name="level" value=3 hidden>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Nama Siswa</label>
-                <select class="form-select" name="name" id="name">
+                <label for="nama" class="form-label">Nama Siswa</label>
+                <select class="form-select" name="nama" id="nama">
                     @foreach ($nama as $item)
-                        <option value="{{ $item->id }}">{{ $item->nama_lengkap }}</option>
+                        <option value="{{ $item->nama_lengkap }}">{{ $item->nama_lengkap }}</option>
                     @endforeach
                 </select>
-            </div>
-            <div class="mb-3">
-                <label for="nis" class="form-label">Nomor Induk Siswa</label>
-                <input type="text" class="form-control" id="nis" name="nis" required
-                    value="{{ old('username') }}">
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>

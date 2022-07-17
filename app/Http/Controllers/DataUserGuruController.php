@@ -43,17 +43,25 @@ class DataUserGuruController extends Controller
      */
     public function store(Request $request)
     {
+        $validateGuru = $request->validate([
+            'nama' => 'required',
+            'nip' => '',
+        ]);
+        $validateGuru['nip'] = $request->nomor_induk;
+
         $validatedData = $request->validate([
-            'name' => 'required',
+            'nama' => 'required',
+            'status_walikelas' => 'required',
+            'nomor_induk' => 'required',
             'username' => 'required|max:255|unique:users',
             'level' => 'required',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:5|max:255',
         ]);
 
-        // $validatedData['password'] = bcrypt($validatedData['password']);
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
+        DataGuru::create($validateGuru);
         return redirect('/dashboard/data-user-guru')->with('success', 'Pengguna Berhasil Ditambahkan');
     }
 
@@ -92,7 +100,7 @@ class DataUserGuruController extends Controller
     public function update(Request $request, User $data_user_guru)
     {
         $rules = [
-            'name' => 'required',
+            'nama' => 'required',
             'level' => 'required',
             'password' => 'required|min:5|max:255',
         ];
@@ -112,8 +120,6 @@ class DataUserGuruController extends Controller
     public function destroy(User $data_user_guru)
     {
         User::destroy($data_user_guru->id);
-        SpiritualNilai::where('user_id', $data_user_guru->id)->delete();
-        DataDiri::where('user_id', $data_user_guru->id)->delete();
         return redirect('/dashboard/data-user-guru')->with('success', 'User Telah Dihapus');
     }
 }

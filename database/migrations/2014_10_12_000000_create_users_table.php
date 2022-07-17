@@ -16,11 +16,11 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->integer('nomor_induk')->nullable();
-            $table->string('name');
+            $table->string('nama');
             $table->string('username')->unique();
             $table->string('level');
             $table->string('email')->unique();
-            $table->enum('status_walikelas',['iya','tidak'])->nullable();
+            $table->enum('status_walikelas',['active','non-active'])->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

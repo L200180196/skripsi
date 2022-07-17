@@ -39,11 +39,10 @@
                     </a>
                 </li>
             @endif
-            @if (auth()->user()->status_walikelas === 'tidak')
+            @if (auth()->user()->status_walikelas === 'non-active')
                 <li hidden>
-
                 </li>
-            @elseif (auth()->user()->status_walikelas === 'iya')
+            @elseif (auth()->user()->status_walikelas === 'active')
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('dashboard/data-diri*') ? 'active' : '' }}"
                         href="/dashboard/data-diri-siswa">

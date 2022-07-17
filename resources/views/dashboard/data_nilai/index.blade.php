@@ -27,7 +27,7 @@
     @else
         <div
             class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Nilai Siswa {{ auth()->user()->name }} </h1>
+            <h1 class="h2">Nilai Siswa {{ auth()->user()->DataDiri->nama_lengkap }} </h1>
         </div>
         <h1 class="h3">Nilai Spiritual</h1>
         <table class="table table-striped table-sm">
@@ -89,7 +89,7 @@
                     <th scope="col" class="text-center">Nilai PTS</th>
                     <th scope="col" class="text-center">Nilai PAS</th>
                     <th scope="col" class="text-center">Nilai Akhir</th>
-                    <th scope="col">Predikat</th>
+                    <th scope="col" class="text-center">Predikat</th>
                 </tr>
             </thead>
             <tbody>
@@ -172,9 +172,17 @@
                         <td class="text-center">{{ $item->pts }}</td>
                         <td class="text-center">{{ $item->pas }}</td>
                         <td class="text-center">{{ $akhir = round($nilai_akhir) }}</td>
-                        <td>
+                        <td class="text-center">
                             @if ($akhir >= 90)
                                 A
+                            @elseif ($akhir >= 80)
+                                B
+                            @elseif ($akhir >= 70)
+                                C
+                            @elseif ($akhir >= 60)
+                                D
+                            @elseif ($akhir < 60)
+                                E
                             @endif
                         </td>
                     </tr>

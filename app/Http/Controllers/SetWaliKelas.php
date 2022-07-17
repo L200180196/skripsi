@@ -40,7 +40,7 @@ class SetWaliKelas extends Controller
     public function destroy(User $id)
     {
         $status = [
-            'status_walikelas' => 'tidak',
+            'status_walikelas' => 'non-active',
         ];
         User::where('id', $id->id)->update($status);
         DataWaliKelas::where('nip_guru', $id->nomor_induk)->delete();

@@ -15,10 +15,10 @@
                 </select>
             </div>
             <div class="mb-3">
-                <label for="name" class="form-label">Nama</label>
-                <input type="text" class="form-control @error('username') is-invalid @enderror" id="name"
-                    name="name" required autofocus value="{{ old('name', $data_user->name) }}">
-                @error('name')
+                <label for="nama" class="form-label">Nama</label>
+                <input type="text" class="form-control @error('username') is-invalid @enderror" id="nama"
+                    name="nama" required autofocus value="{{ old('nama', $data_user->nama) }}">
+                @error('nama')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
