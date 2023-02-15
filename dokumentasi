@@ -1,0 +1,94 @@
+{root.api}/{version}/
+
+Response
+200 - OK                    --> CALL API SUCCESS
+201 - CREATED               --> POST API SUCCESS
+400 - BAD REQUEST           --> ERROR ON CLIENT
+401 - UNAUTHORIZED          --> USER NOT AUTHORIZED
+403 - FORBIDDEN             --> USER NOT ALLOWED
+404 - NOT FOUND             --> REQUEST END POINT
+409 - CONFLICT              --> REQUEST CONFLICT
+500 - INTERNAL SERVER ERROR --> ERROR ON SERVER
+501 - BAD GATEWAY           --> INVALID RESPONSE
+
+[1] - Input Permohonan
+{root.api}/{version}/permohonan{POST}
+req:
+{
+  "no_pemohon": "string",
+  "pemohon": [
+    {
+      "nama": "string",
+      "telepon": "string",
+      "nama_pelanggan": "string",
+      "alamat_pelanggan": "String",
+    }
+  ],
+  "file_permohonan": "string",
+  "baku_mutu": [
+    {
+      "wadah": "string",
+      "tanggal_terima": "Date",
+      "tanggal_sampling": "Date",
+      "pengambil_sample": "String",
+    }
+  ],
+  "jenis_sample": [
+    {
+      "wadah": "string",
+      "tanggal_terima": "Date",
+      "tanggal_sampling": "Date",
+      "pengambil_sample": "String",
+    }
+  ],
+  "status": "string",
+  "log_status": "string",
+  "layanan_uji": "string",
+  "layanan_lainnya": "string",
+  "tarif_total": "string",
+  "status_bayar": "string",
+  "pengambil_sample": "string",
+  "timestamp"
+}
+
+[2] - Input FKPPS
+{root.api}/{version}/FKPPS{POST}
+
+req:
+{
+  "permohonan": [
+    {
+      "deskripsi": "string",
+      "titik_koordinat": "string",
+      "tanggal": "string",
+      "waktu": "string",
+      "kode": "string",
+      "jumlah": "string",
+      "bentuk": "string",
+      "volume": "string",
+      "parameter": Array[],
+    }
+  ],
+  "penerimaan_sampel": [
+    {
+      "wadah": "string",
+      "tanggal_terima": "Date",
+      "tanggal_sampling": "Date",
+      "pengambil_sample": "String",
+    }
+  ],
+  "Sample": Array[],
+  "kaji_ulang": [
+    {
+      "kemampuan_personel": "string, enum: ["Mampu", "Tidak Mampu"]",
+      "kondisi_akomodasi": "string, enum: ["Baik", "Tidak Baik"]",
+      "beban_pekerjaan_lab": "string, enum: ["Overload", "Tidak Overload"]",
+      "kondisi_peralatan_pengujian": "string, enum: ["Rusak", "Tidak Rusak"]",
+      "kesesuaian_metode": "string, enum: ["Sesuai", "Tidak Sesuai"]",
+      "ketersediaan_reagen": "string, enum: ["Cukup", "Tidak Mencukupi"]",
+      "abnormalitas_sample": Array[], enum: ["Keruh", "Sedikit Keruh", "Botol Tidak Sesuai"],
+      "kesmpulan": "string, enum: ["Permintaan Dapat Dilayani", "Permintaan Tidak Dapat Dilayani"]",
+    }
+  ],
+  "timestamps"
+}
